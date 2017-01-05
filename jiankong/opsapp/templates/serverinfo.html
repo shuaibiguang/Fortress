@@ -1,0 +1,345 @@
+{% load static %}
+{% include 'header.html' %}
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  {% include 'top.html' %}
+  {% include 'nav.html'%}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+      <h1>
+        仪表盘
+        <small>Version 1.0</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">仪表盘</li>
+      </ol>
+    </section>
+
+
+    <!-- Main content -->
+    <section class="content">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">服务器状态</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-wrench"></i></button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">查看该服务器</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">详细内容</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">重启</a></li>
+                    <li><a href="#">关机</a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <p class="text-center">
+                    <strong>近期内CPU波动</strong>
+                  </p>
+
+                  <div class="chart">
+                    <!-- Sales Chart Canvas -->
+                    <div id="interactive" style="height: 180px;"></div>
+                  </div>
+                  <!-- /.chart-responsive -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-4">
+                  <p class="text-center">
+                    <strong>硬盘使用情况</strong>
+                  </p>
+
+                  <div class="progress-group">
+                    <span class="progress-text">/dev/mapper/centos-root</span>
+                    <span class="progress-number"><b>2800M</b>/18000M</span>
+
+                    <div class="progress sm">
+                      <div class="progress-bar progress-bar-aqua" style="width: 16%"></div>
+                    </div>
+                  </div>
+                  <!-- /.progress-group -->
+                  <div class="progress-group">
+                    <span class="progress-text">devtmpfs</span>
+                    <span class="progress-number"><b>0M</b>/483M</span>
+
+                    <div class="progress sm">
+                      <div class="progress-bar progress-bar-red" style="width: 0%"></div>
+                    </div>
+                  </div>
+                  <!-- /.progress-group -->
+                  <div class="progress-group">
+                    <span class="progress-text">/dev/sdal</span>
+                    <span class="progress-number"><b>497M</b>/108M</span>
+
+                    <div class="progress sm">
+                      <div class="progress-bar progress-bar-yellow" style="width: 22%"></div>
+                    </div>
+                  </div>
+                  <!-- /.progress-group -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- ./box-body -->
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block border-right">
+                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i><span class="cupnum">20%</span></span>
+                    <h5 class="description-header">CUP使用情况</h5>
+                    <span class="description-text">cpu</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block border-right">
+                    <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> <span class="neicunnum">50%</span></span>
+                    <h5 class="description-header">内存占用情况</h5>
+                    <span class="description-text">neicun</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block border-right">
+                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> <span class="net-up">18</span>kb/s</span>
+                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> <span class="net-down">18</span>kb/s</span>
+                    <h5 class="description-header">网络使用情况</h5>
+                    <span class="description-text">network</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block">
+                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 58</span>
+                    <h5 class="description-header">进程数</h5>
+                    <span class="description-text">jincheng</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-footer -->
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box">
+                    <p class="text-center">
+                      <strong>近期内存波动</strong>
+                    </p>
+
+                    <div class="chart">
+                      <!-- Sales Chart Canvas -->
+                      <div id="neicungo" style="height: 180px;width:100%"></div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <div class="control-sidebar-bg"></div>
+
+</div>
+<!-- ./wrapper -->
+<!-- 内存监控 -->
+
+<!-- jQuery 2.2.3 -->
+{% include 'loadjs.html'%}
+<script>
+    notyf.confirm('监控正常...');
+    var local = '{{ip}}';
+    var prot = '{{prot}}';
+    var abb = [],neicunarr = [] ,neicun_dan = '',totalPoints = 100;
+
+    for(var i = 0;i<totalPoints;i++){
+      abb.push(0);neicunarr.push(0);
+    }
+
+    function get_data(){
+      if (abb.length > 0)
+          abb = abb.slice(1);
+      var url = local+":"+prot+"/apiserverinfo/";
+      while (abb.length < totalPoints){
+          $.ajax({
+                  url:url,
+                  type:"get",
+                  async: false,
+                  success:function(res){
+                      var res = res;
+                      console.log(res);
+                      var net_up = res[1][2]/1024;
+                      var net_down = res[1][3]/1024;
+                      neicun_dan = res[2][2];
+                      $('.net-up').html(net_up.toFixed(2));
+                      $('.net-down').html(net_down.toFixed(2));
+                      $('.cupnum').html(res[0]+"%");
+                      $('.neicunnum').html(res[2][2]+"%");
+                      abb.push(res[0]);
+                  },
+                  error:function(e){
+                      console.log(e);
+                  }
+              });
+
+      }
+
+      var arr = [];
+         for(var i= 0;i<abb.length;i++){
+            arr.push([i, abb[i]]);
+         }
+       return arr;
+    }
+
+        function get_neicun(){
+          if (neicunarr.length > 0)
+              neicunarr = neicunarr.slice(1);
+          while (neicunarr.length < totalPoints){
+              neicunarr.push(neicun_dan);
+          }
+
+          var neicuna = [];
+             for(var i= 0;i<neicunarr.length;i++){
+                neicuna.push([i, neicunarr[i]]);
+             }
+           return neicuna;
+        }
+
+    var interactive_plot = $.plot("#interactive", [get_data()], {
+      grid: {
+        borderColor: "#f3f3f3",
+        borderWidth: 1,
+        tickColor: "#f3f3f3"
+      },
+      series: {
+        shadowSize: 0, // Drawing is faster without shadows
+        color: "#3c8dbc"
+      },
+      lines: {
+        fill: true, //Converts the line chart to area chart
+        color: "#3c8dbc"
+      },
+      yaxis: {
+        min: 0,
+        max: 100,
+        show: true
+      },
+      xaxis: {
+        show: true
+      }
+    });
+
+    var updateInterval = 1000; //Fetch data ever x milliseconds
+    var realtime = "on"; //If == to on then fetch data every x seconds. else stop fetching
+    function update() {
+
+      interactive_plot.setData([get_data()]);
+
+      // Since the axes don't change, we don't need to call plot.setupGrid()
+      interactive_plot.draw();
+      if (realtime === "on")
+        setTimeout(update, updateInterval);
+    }
+
+    //INITIALIZE REALTIME DATA FETCHING
+    if (realtime === "on") {
+      update();
+    }
+    //REALTIME TOGGLE
+    $("#realtime .btn").click(function () {
+      if ($(this).data("toggle") === "on") {
+        realtime = "on";
+      }
+      else {
+        realtime = "off";
+      }
+      update();
+    });
+
+
+    var neicun_plot = $.plot("#neicungo", [get_neicun()], {
+      grid: {
+        borderColor: "#f3f3f3",
+        borderWidth: 1,
+        tickColor: "#f3f3f3"
+      },
+      series: {
+        shadowSize: 0, // Drawing is faster without shadows
+        color: "#3c8dbc"
+      },
+      lines: {
+        fill: true, //Converts the line chart to area chart
+        color: "#3c8dbc"
+      },
+      yaxis: {
+        min: 0,
+        max: 100,
+        show: true
+      },
+      xaxis: {
+        show: true
+      }
+    });
+
+    var realtime = "on"; //If == to on then fetch data every x seconds. else stop fetching
+    function neicun_update() {
+
+      neicun_plot.setData([get_neicun()]);
+
+      // Since the axes don't change, we don't need to call plot.setupGrid()
+      neicun_plot.draw();
+      if (realtime === "on")
+        setTimeout(neicun_update, updateInterval);
+    }
+
+    //INITIALIZE REALTIME DATA FETCHING
+    if (realtime === "on") {
+      neicun_update();
+    }
+    //REALTIME TOGGLE
+    $("#realtime .btn").click(function () {
+      if ($(this).data("toggle") === "on") {
+        realtime = "on";
+      }
+      else {
+        realtime = "off";
+      }
+      neicun_update();
+    });
+</script>
+</body>
+</html>

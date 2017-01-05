@@ -1,0 +1,153 @@
+{% load static %}
+{% include 'header.html' %}
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  {% include 'top.html' %}
+  {% include 'nav.html'%}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        新增服务器
+        <small>Version 1.0</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">新增服务器</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <div class="row">
+        <div class="alert alert-info alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-info"></i> 提示!</h4>
+          在添加服务器之前请确定对应服务器已经运行了客户端
+        </div>
+        <div class="col-md-6">
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">新增监控服务器</h3>
+            </div>
+              <!-- /.row -->
+              <div class="box-body">
+                  <div class="from-group">
+                      <label>服务器ip地址</label>
+                      <div class="input-group">
+                          <div class="input-group-addon">
+                              <i class="fa fa-desktop"></i>
+                          </div>
+                          <input type="text" class="form-control ip-val"/>
+                      </div>
+                      <span class="ip-mass"></span>
+                      <br>
+                      <button type="button" class="btn btn-block btn-primary ip-add">添加</button>
+                  </div>
+              </div>
+          </div>
+
+          </div>
+          <!-- /.box -->
+          <!--  信息提醒    -->
+              <div class="col-md-6 pull-right">
+                <div class="box box-default ">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">已有的服务器</h3>
+
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                    <!-- /.box-tools -->
+                  </div>
+                  {% for list in serverlist %}
+                  <div class="box-body">
+                      <i class="fa fa-group"></i>{{list.ip}}
+                      <i class="fa fa-close pull-right delete" rel="{{list.id}}"></i>
+                  </div>
+                  {% endfor %}
+                  <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+              </div>
+        </div>
+        <!-- /.col -->
+      </div>
+
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+  </div>
+
+  <div class="control-sidebar-bg"></div>
+
+</div>
+<!-- jQuery 2.2.3 -->
+{% include 'loadjs.html'%}
+<script type="text/javascript">
+      notyf.confirm("欢迎新增服务器...");
+    setTimeout(function(){
+      notyf.confirm("让我们的阵营更加强大吧...");
+    },1500);
+    // 作删除操作
+    $('.delete').on('click',function(){
+        if(confirm('确定删除吗？')){
+            var de = $(this);
+            var id = $(this).attr('rel');
+            $.ajax({
+                url:"{% url 'deleteserver'%}",
+                type:'post',
+                data:{'id':id,'csrfmiddlewaretoken':'{{csrf_token}}'},
+                success:function(res){
+                    if (res[0] == 200){
+                        notyf.confirm(res[1]);
+                        de.parent().hide('1000');
+                    }
+                },
+                error:function(res){
+                    notyf.alert('...我...好像// 出#￥@￥错了》！#啊》');
+                }
+            });
+        }
+    })
+    $('.ip-add').on('click',function(){
+        var ip = $('.ip-val').val();
+        if(ip == ''){
+            notyf.alert('请填写服务器ip在提交...');
+        }else{
+            iparr = ip.split('.');
+            if (iparr.length < 4){
+                notyf.alert('请填写正确格式的ip地址...');
+            }else{
+                for (var i in iparr){
+                    if(iparr[i].length >3){
+                        notyf.alert('请填写正确格式的ip地址...');
+                        return false;
+                    }
+                }
+                notyf.confirm('正在提交...');
+                $.ajax({
+                    url:"{% url 'addserver' %}",
+                    type:'post',
+                    data:{'ip':ip,'csrfmiddlewaretoken':'{{ csrf_token }}'},
+                    success:function(res){
+                        if (res[0] == 200){
+                            notyf.confirm(res[1]);
+                            $('.box-default').append('<div class="box-body"><i class="fa fa-group"></i>'+ip+'</div>');
+                            $('.ip-val').val('');
+                        }else{
+                            notyf.alert(res[1]);
+                        }
+                    }
+                })
+            }
+        }
+    });
+</script>
+</body>
+</html>
