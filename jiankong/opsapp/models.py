@@ -6,4 +6,3 @@ class serverlist(models.Model):
     info = models.TextField()
     uptime = models.DateTimeField(auto_now = True)
     ctime = models.DateTimeField(auto_now_add = True)
-    

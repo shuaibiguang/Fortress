@@ -1,0 +1,112 @@
+('112.74.35.148', 51574)
+serverinfo
+('112.74.35.148', 51575)
+serverinfo
+('112.74.35.148', 51576)
+serverinfo
+('112.74.35.148', 51577)
+serverinfo
+('112.74.35.148', 51578)
+serverinfo
+('112.74.35.148', 51579)
+serverinfo
+('112.74.35.148', 51580)
+serverinfo
+('112.74.35.148', 51582)
+serverinfo
+('112.74.35.148', 53620)
+serverinfo
+('112.74.35.148', 53621)
+serverinfo
+('112.74.35.148', 53622)
+serverinfo
+('112.74.35.148', 53624)
+serverinfo
+('172.82.166.210', 45410)
+GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1
+Host: www.baidu.com
+User-Agent: Mozilla
+If-Modified-Since: Thu, 19 Apr 2012 09:51:20 GMT
+
+
+('80.82.78.38', 47637)
+GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1
+Host: www.baidu.com
+User-Agent: Mozilla
+If-Modified-Since: Thu, 19 Apr 2012 09:51:20 GMT
+
+
+('80.82.78.38', 58270)
+GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1
+Host: www.baidu.com
+User-Agent: Mozilla
+If-Modified-Since: Thu, 19 Apr 2012 09:51:20 GMT
+
+
+('172.82.166.210', 47255)
+GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1
+Host: www.baidu.com
+User-Agent: Mozilla
+If-Modified-Since: Thu, 19 Apr 2012 09:51:20 GMT
+
+
+('89.248.167.131', 39479)
+GET / HTTP/1.1
+Host: 112.74.35.148:8001
+Accept-Encoding: identity
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
+
+
+('89.248.167.131', 40206)
+
+('212.47.246.179', 49140)
+GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1
+Host: www.baidu.com
+User-Agent: Mozilla
+If-Modified-Since: Thu, 19 Apr 2012 09:51:20 GMT
+
+
+('163.172.134.70', 48676)
+GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1
+Host: www.baidu.com
+User-Agent: Mozilla
+If-Modified-Since: Thu, 19 Apr 2012 09:51:20 GMT
+
+
+('139.162.45.31', 34368)
+GET http://clientapi.ipip.net/echo.php?info=20161224143546 HTTP/1.1
+Host: clientapi.ipip.net
+Accept: */*
+Pragma: no-cache
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64)
+
+
+('139.162.45.31', 34960)
+Traceback (most recent call last):
+  File "yunwei_server.py", line 24, in <module>
+    ser.main()
+  File "yunwei_server.py", line 11, in main
+    mass = con.recv(512).decode()
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x9c in position 1: invalid start byte
+('172.82.166.210', 35832)
+GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1
+Host: www.baidu.com
+User-Agent: Mozilla
+If-Modified-Since: Thu, 19 Apr 2012 09:51:20 GMT
+
+
+Traceback (most recent call last):
+  File "yunwei_server.py", line 24, in <module>
+    ser.main()
+  File "yunwei_server.py", line 16, in main
+    con.send(info)
+UnboundLocalError: local variable 'info' referenced before assignment
+('139.162.45.31', 48736)
+
+Traceback (most recent call last):
+  File "yunwei_server.py", line 24, in <module>
+    ser.main()
+  File "yunwei_server.py", line 16, in main
+    con.send(info)
+UnboundLocalError: local variable 'info' referenced before assignment

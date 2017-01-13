@@ -1,4 +1,4 @@
-import socket,psutil,pickle
+import socket,psutil,pickle,json
 
 class server():
     def main(self):
@@ -12,8 +12,7 @@ class server():
             print(mass)
             if mass == 'serverinfo':
                 info = pickle.dumps(self.get_server_info())
-
-            con.send(info)
+            con.sendall(info)
 
     def get_server_info(self):
         # 1.cpu 2.net_io 3.mem

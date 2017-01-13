@@ -16,7 +16,9 @@ def serverinfo(request):
     return render(request,'serverinfo.html',{'ip':ip,'prot':prot})
 
 def serverlist(request):
-    pass
+    serverlist = serverlistModel.objects.all()
+
+    return render(request,'serverlist.html',{'serverlist':serverlist})
 
 
 # 添加新的服务器

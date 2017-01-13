@@ -12,5 +12,5 @@ class OpsappConfig(AppConfig):
     db_name = 'jiankong'
     db_user = 'root'
     db_password = 'root'
-    db_host = 'localhost'
+    db_host = '127.0.0.1'
     db_port = '3306'
