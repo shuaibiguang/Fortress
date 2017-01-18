@@ -182,8 +182,8 @@
 {% include 'loadjs.html'%}
 <script>
     notyf.confirm('监控正常...');
-    var local = '{{ip}}';
-    var prot = '{{prot}}';
+    var local = '{{local}}';
+    var id  = '{{id}}';
     var abb = [],neicunarr = [] ,neicun_dan = '',totalPoints = 100;
 
     for(var i = 0;i<totalPoints;i++){
@@ -193,7 +193,7 @@
     function get_data(){
       if (abb.length > 0)
           abb = abb.slice(1);
-      var url = local+":"+prot+"/apiserverinfo/";
+      var url = local+"/apiserverinfo/"+id;
       while (abb.length < totalPoints){
           $.ajax({
                   url:url,

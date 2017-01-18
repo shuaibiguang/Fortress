@@ -10,15 +10,32 @@ import json,socket,pickle,time,threading
 def index(request):
     return render(request,'index.html')
 
-def serverinfo(request):
-    ip = C.LOCAL
-    prot = C.LOCAL_PROT
-    return render(request,'serverinfo.html',{'ip':ip,'prot':prot})
+# 查看数据库详情
+def serverinfo(request,id):
+    if 'POST' == request.method:
+        id = request.POST['id']
+        a = serverlistModel.objects.get(id=id)
+        return atool.apiReturn('200','ok',json.loads(a.info))
+    # return render(request,'serverinfo.html',{'id':id,'local':'http://guang.unnaming.net'﻿﻿})
+    return render(request, 'serverinfo.html', {'id':id, 'local': 'http://guang.unnaming.net'})
 
+# 查看数据库列表
 def serverlist(request):
+    if 'POST' == request.method:
+        serverlist = serverlistModel.objects.all()
+        return atool.apiReturn2(serverlist)
     serverlist = serverlistModel.objects.all()
-
-    return render(request,'serverlist.html',{'serverlist':serverlist})
+    slist = []
+    for i in serverlist:
+        try:
+            info = json.loads(i.info)
+        except:
+            info = []
+        print (type(info))
+        arr= {'id':i.id,'ip':i.ip,'info':info}
+        slist.append(arr)
+    print (slist)
+    return render(request,'serverlist.html',{'serverlist':slist})
 
 
 # 添加新的服务器
@@ -45,7 +62,7 @@ def deleteServer(request):
         data.delete()
         return atool.apiReturn(200,"删除完毕...",'')
 
-# 服务器监控详情
+# 返回服务器监控详情
 def apiserverinfo(request):
     data = connect(C.OPSIP,"serverinfo")
     response = HttpResponse(data,content_type="application/json")
@@ -54,6 +71,7 @@ def apiserverinfo(request):
     response["Access-Control-Max-Age"] = "1000"
     response["Access-Control-Allow-Headers"] = "*"
     return response
+
 # 进行连接数据库操作
 def connect(ip,mass):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

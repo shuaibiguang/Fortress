@@ -22,9 +22,9 @@ from django.views.generic.base import RedirectView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index', inapp.index, name="index"),
-    url(r'^apiserverinfo', inapp.apiserverinfo),
+    url(r'^apiserverinfo', inapp.apiserverinfo, name="serverinfo"),
     url(r'^addserver', inapp.addserver, name="addserver"),
-    url(r'^serverinfo', inapp.serverinfo, name='serverinfo'),
+    url(r'^serverinfo/(\d+)/$', inapp.serverinfo, name='serverinfo'),
     url(r'^serverlist', inapp.serverlist, name="serverlist"),
     url(r'^deleteserver',inapp.deleteServer,name="deleteserver"),
     url(r'^accounts/login/$',login, {'template_name': 'login/login.html'},name="login"),

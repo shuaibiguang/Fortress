@@ -21,16 +21,15 @@
 
     <!-- Main content -->
     <section class="content">
-
-      <div class="row">
+      {% for list in serverlist%}
+      <div class="row z{{list.id}}">
         <div class="col-md-12">
           <div class="box">
-
-          <!-- 上方工具栏 -->
             <div class="box-header with-border">
-              <h3 class="box-title">0.0.0.0</h3>
+              <h3 class="box-title">{{ list.ip }}</h3>
+
               <div class="box-tools pull-right">
-                <a href="#" class="btn btn-box-tool" data-widget="jump" data-original-title='查看详情' title="查看详情" data-toggle="tooltip" style="margin-right:10px">
+                <a href="{% url 'serverinfo' list.id %}" class="btn btn-box-tool" data-widget="jump" data-original-title='查看详情' title="查看详情" data-toggle="tooltip" style="margin-right:10px">
                   <i class="fa fa-circle-o"></i>
                 </a>
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -38,11 +37,48 @@
               </div>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
-              <!-- 仪表盘  -->
-
+            {% if list.info %}
+            <div class="row">
+              <!-- 事件提醒栏  -->
+              <div class="col-md-5 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua">
+                        <i class="ion ion-ios-gear-outline"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">CPU</span>
+                        <span class="info-box-number cpu" value="90">
+                          {{list.info.0}}%
+                        </span>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-5 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua">
+                        <i class="ion ion-ios-gear-outline"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">内存</span>
+                        <span class="info-box-number neicun" value="90">
+                          {{list.info.2.2}}%
+                        </span>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-2 col-sm-6 col-xs-12" style="height:105px">
+                  <a href="{% url 'serverinfo' list.id %}" class="btn bg-olive btn-flat margin pull-left" style="margin-top:30px">查看详情</a>
+              </div>
                 <!-- /.col -->
               </div>
+              {% else %}
+                    <div class="box-body">
+                        <div class="callout callout-danger">
+                            <h4>没有数据</h4>
+                            <p>可能数据库失恋了</p>
+                        </div>
+                    </div>
+              {% endif %}
               <!-- /.row -->
             </div>
 
@@ -51,6 +87,7 @@
           <!--  后续直接写占位就好了    -->
 
         </div>
+        {% endfor %}
         <!-- /.col -->
       </div>
 
@@ -68,84 +105,6 @@
 <script src="{% static 'js/jquery.knob.js'%}"></script>
 <script type="text/javascript">
       notyf.confirm("欢迎查看服务器运行情况...");
-      var server = new Vue({
-          el:'.wrapper',
-          data:{
-            info:'',
-            test:22,
-          }
-      })
-      setInterval(getdata,1000);
-      var temp = 1;
-      function getdata(){
-        $.post("{% url 'serverlist'%}",{'csrfmiddlewaretoken':'{{csrf_token}}'},function(res){
-              server.info = res;
-              console.log(1);
-              server.test = temp;
-              temp += 1;
-              $('.knob').knob({
-                  draw:function(){
-                    this.g.beginPath();
-                    this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
-                    this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
-                    this.g.stroke();
-
-                    this.g.lineWidth = 2;
-                    this.g.beginPath();
-                    this.g.strokeStyle = this.o.fgColor;
-                    this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
-                    this.g.stroke();
-                    return false;
-                  }
-              });
-        });
-      }
-      $(".knob").knob({
-        draw: function () {
-
-          // "tron" case
-          if (this.$.data('skin') == 'tron') {
-
-            var a = this.angle(this.cv)  // Angle
-                , sa = this.startAngle          // Previous start angle
-                , sat = this.startAngle         // Start angle
-                , ea                            // Previous end angle
-                , eat = sat + a                 // End angle
-                , r = true;
-
-            this.g.lineWidth = this.lineWidth;
-
-            this.o.cursor
-            && (sat = eat - 0.3)
-            && (eat = eat + 0.3);
-
-            if (this.o.displayPrevious) {
-              ea = this.startAngle + this.angle(this.value);
-              this.o.cursor
-              && (sa = ea - 0.3)
-              && (ea = ea + 0.3);
-              this.g.beginPath();
-              this.g.strokeStyle = this.previousColor;
-              this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
-              this.g.stroke();
-            }
-
-            this.g.beginPath();
-            this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
-            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
-            this.g.stroke();
-
-            this.g.lineWidth = 2;
-            this.g.beginPath();
-            this.g.strokeStyle = this.o.fgColor;
-            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
-            this.g.stroke();
-
-            return false;
-          }
-        }
-      });
-
 </script>
 </body>
 </html>
