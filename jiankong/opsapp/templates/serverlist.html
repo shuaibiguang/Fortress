@@ -29,9 +29,11 @@
               <h3 class="box-title">{{ list.ip }}</h3>
 
               <div class="box-tools pull-right">
+                {% if list.info %}
                 <a href="{% url 'serverinfo' list.id %}" class="btn btn-box-tool" data-widget="jump" data-original-title='查看详情' title="查看详情" data-toggle="tooltip" style="margin-right:10px">
                   <i class="fa fa-circle-o"></i>
                 </a>
+                {% endif %}
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>
@@ -40,34 +42,44 @@
             {% if list.info %}
             <div class="row">
               <!-- 事件提醒栏  -->
-              <div class="col-md-5 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="info-box">
                     <span class="info-box-icon bg-aqua">
                         <i class="ion ion-ios-gear-outline"></i>
                     </span>
                     <div class="info-box-content">
-                        <span class="info-box-text">CPU</span>
+                        <span class="info-box-text">CPU:</span>
                         <span class="info-box-number cpu" value="90">
                           {{list.info.0}}%
                         </span>
                     </div>
                 </div>
               </div>
-              <div class="col-md-5 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="info-box">
                     <span class="info-box-icon bg-aqua">
                         <i class="ion ion-ios-gear-outline"></i>
                     </span>
                     <div class="info-box-content">
-                        <span class="info-box-text">内存</span>
+                        <span class="info-box-text">内存:</span>
                         <span class="info-box-number neicun" value="90">
                           {{list.info.2.2}}%
                         </span>
                     </div>
                 </div>
               </div>
-              <div class="col-md-2 col-sm-6 col-xs-12" style="height:105px">
-                  <a href="{% url 'serverinfo' list.id %}" class="btn bg-olive btn-flat margin pull-left" style="margin-top:30px">查看详情</a>
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua">
+                        <i class="ion ion-ios-gear-outline"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">进程数:</span>
+                        <span class="info-box-number neicun" value="90">
+                          {{list.info.3}}个
+                        </span>
+                    </div>
+                </div>
               </div>
                 <!-- /.col -->
               </div>

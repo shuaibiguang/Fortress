@@ -134,7 +134,7 @@
                 <!-- /.col -->
                 <div class="col-sm-3 col-xs-6">
                   <div class="description-block">
-                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 58</span>
+                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i><span class="pids">58</span> </span>
                     <h5 class="description-header">进程数</h5>
                     <span class="description-text">jincheng</span>
                   </div>
@@ -193,14 +193,15 @@
     function get_data(){
       if (abb.length > 0)
           abb = abb.slice(1);
-      var url = local+"/apiserverinfo/"+id;
+      var url = local+"/apiserverinfo/";
       while (abb.length < totalPoints){
           $.ajax({
                   url:url,
-                  type:"get",
+                  type:"post",
+                  data:{'id':id,'csrfmiddlewaretoken':'{{ csrf_token }}'},
                   async: false,
                   success:function(res){
-                      var res = res;
+                      var res = res[2];
                       console.log(res);
                       var net_up = res[1][2]/1024;
                       var net_down = res[1][3]/1024;
@@ -209,6 +210,7 @@
                       $('.net-down').html(net_down.toFixed(2));
                       $('.cupnum').html(res[0]+"%");
                       $('.neicunnum').html(res[2][2]+"%");
+                      $('.pids').html(res[3]);
                       abb.push(res[0]);
                   },
                   error:function(e){

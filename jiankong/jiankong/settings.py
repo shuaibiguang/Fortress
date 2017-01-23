@@ -127,3 +127,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
 	os.path.join(BASE_DIR,'static')
 ]
+
+# mail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = '519349139@qq.com'
+EMAIL_HOST_PASSWORD = 'aiguodeguang'
+DEFAULT_FROM_EMAIL = 'b2-Fortress'

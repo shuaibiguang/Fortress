@@ -7,15 +7,19 @@ ipInfo = {}
 
 # 将监控结果写入数据库
 def save_info(cont):
-    while True:
-        if len(ipInfo) > 0:
-            print ('我在存储数据')
-            for ip in ipInfo:
-                with cont.cursor() as cursor:
-                    sql = 'update opsapp_serverlist set info = %s where ip = %s'
-                    cursor.execute(sql,(ipInfo[ip],ip))
-            cont.commit()
-        time.sleep(1)
+    try:
+        while True:
+            if len(ipInfo) > 0:
+                print ('我在存储数据')
+                for ip in ipInfo:
+                    with cont.cursor() as cursor:
+                        sql = 'update opsapp_serverlist set info = %s where ip = %s'
+                        cursor.execute(sql,(ipInfo[ip],ip))
+                cont.commit()
+            time.sleep(1)
+    except:
+        connect = connect()
+        save_info(connect)
 
 #工作中继器，给不同的ip分配不同的线程，10s 刷新一下
 

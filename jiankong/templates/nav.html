@@ -40,13 +40,10 @@
       <li class="treeview {% if '/serverlist' == request.path or '/addserver' == request.path %} active {%endif%}">
           <a href="#">
               <i class="fa fa-th"></i> <span>监控服务器管理</span>
-              <span class="pull-right-container">
-                  <small class="label pull-right bg-green">5</small>
-              </span>
           </a>
           <ul class="treeview-menu">
               <li class="{%if '/serverlist' == request.path %} active {%endif%}"><a href="{% url 'serverlist' %}"><i class="fa fa-group"></i>服务器列表</a></li>
-              <li class="{%if '/addserver' == request.path %} active {%endif%}"><a href="{% url 'addserver' %}"><i class="fa fa-plus"></i>新增服务器</a></li>
+              <li class="{%if '/addserver' == request.path %} active {%endif%}"><a href="{% url 'addserver' %}"><i class="fa fa-plus"></i>管理服务器</a></li>
           </ul>
       </li>
 

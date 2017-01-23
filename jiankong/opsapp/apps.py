@@ -14,3 +14,9 @@ class OpsappConfig(AppConfig):
     db_password = 'root'
     db_host = '127.0.0.1'
     db_port = '3306'
+    # 邮箱报警对象
+    police_mail = [
+                '519349139@qq.com',
+                '707205495@qq.com',
+                '571308149@qq.com'
+            ]

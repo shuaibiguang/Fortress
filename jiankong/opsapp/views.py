@@ -8,15 +8,11 @@ import json,socket,pickle,time,threading
 
 @login_required(login_url="/accounts/login/")
 def index(request):
-    return render(request,'index.html')
+    serverNum = len(serverlistModel.objects.all())
+    return render(request,'index.html',{'num':serverNum})
 
 # 查看数据库详情
 def serverinfo(request,id):
-    if 'POST' == request.method:
-        id = request.POST['id']
-        a = serverlistModel.objects.get(id=id)
-        return atool.apiReturn('200','ok',json.loads(a.info))
-    # return render(request,'serverinfo.html',{'id':id,'local':'http://guang.unnaming.net'﻿﻿})
     return render(request, 'serverinfo.html', {'id':id, 'local': 'http://guang.unnaming.net'})
 
 # 查看数据库列表
@@ -64,20 +60,8 @@ def deleteServer(request):
 
 # 返回服务器监控详情
 def apiserverinfo(request):
-    data = connect(C.OPSIP,"serverinfo")
-    response = HttpResponse(data,content_type="application/json")
-    response["Access-Control-Allow-Origin"] = "*"
-    response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
-    response["Access-Control-Max-Age"] = "1000"
-    response["Access-Control-Allow-Headers"] = "*"
-    return response
-
-# 进行连接数据库操作
-def connect(ip,mass):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect((ip, C.OPSPORT))
-    sock.send(mass.encode())
-    data = sock.recv(100000)
-    data = json.dumps(pickle.loads(data))
-    return data
-    # M.eit_ops_info(ip,data)
+    if 'POST' == request.method:
+        id = request.POST['id']
+        a = serverlistModel.objects.get(id=id)
+        return atool.apiReturn('200','ok',json.loads(a.info))
+    return atool.apiReturn('203','error','没有post进来')

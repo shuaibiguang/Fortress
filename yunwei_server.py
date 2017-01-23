@@ -16,7 +16,7 @@ class server():
 
     def get_server_info(self):
         # 1.cpu 2.net_io 3.mem
-        return [psutil.cpu_percent(),psutil.net_io_counters(),psutil.virtual_memory()]
+        return [psutil.cpu_percent(),psutil.net_io_counters(),psutil.virtual_memory(),len(psutil.pids())]
 
 if __name__ == '__main__':
     ser = server()
